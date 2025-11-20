@@ -1,77 +1,119 @@
 import React from "react";
-import { education } from "../../constants"; // Import the education data
+import { education } from "../../constants.js";
+import { MapPin } from "lucide-react";
 
 const Education = () => {
   return (
     <section
       id="education"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans bg-skills-gradient clip-path-custom-3"
+      className="py-24 px-[6vw] font-sans bg-skills-gradient clip-path-custom-3"
     >
-      {/* Section Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">EDUCATION</h2>
-        <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          My education has been a journey of learning and development. Here are the details of my academic background
+      {/* Section Header */}
+      <div className="text-center mb-20">
+        <h2 className="text-4xl font-bold text-white tracking-wide">
+          EDUCATION
+        </h2>
+        <div className="w-24 h-1 bg-purple-500 mx-auto mt-3 rounded-full"></div>
+        <p className="text-gray-400 mt-4 text-lg font-medium">
+          My education has been a journey of learning and growth.
         </p>
       </div>
 
-      {/* Education Timeline */}
-      <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 sm:-translate-x-0 w-1 bg-white h-full"></div>
+      {/* Timeline */}
+      <div className="relative max-w-6xl mx-auto">
+        {/* Central Vertical Line */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-[3px] bg-gradient-to-b from-purple-600 to-purple-900 h-full rounded-full"></div>
 
-        {/* Education Entries */}
         {education.map((edu, index) => (
           <div
             key={edu.id}
-            className={`flex flex-col sm:flex-row items-center mb-16 ${
-              index % 2 === 0 ? "sm:justify-start" : "sm:justify-end"
-            }`}
+            className="relative flex items-center justify-between mb-24 w-full"
           >
-            {/* Timeline Circle */}
-            <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 bg-gray-400 border-4 border-[#8245ec] w-12 h-12 sm:w-16 sm:h-16 rounded-full flex justify-center items-center z-10">
-              <img
-                src={edu.img}
-                alt={edu.school}
-                className="w-full h-full object-cover rounded-full"
-              />
+            {/* Timeline Node (Logo) */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 z-20 flex justify-center items-center">
+              <div className="bg-gray-900 border-4 border-purple-600 w-16 h-16 rounded-full flex justify-center items-center shadow-[0_0_25px_4px_rgba(130,69,236,0.6)]">
+                <img
+                  src={edu.img}
+                  alt={edu.school}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
             </div>
 
-            {/* Content Section */}
+            {/* Horizontal Connector Line */}
             <div
-              className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-[0_0_20px_1px_rgba(130,69,236,0.3)] ${
-                index % 2 === 0 ? "sm:ml-0" : "sm:mr-0"
-              } sm:ml-44 sm:mr-44 ml-8 transform transition-transform duration-300 hover:scale-105`}
+              className={`absolute top-1/2 w-[calc(50%-2rem)] h-[2px] bg-gradient-to-r from-purple-600 to-purple-400 ${
+                index % 2 === 0
+                  ? "left-[calc(50%+2rem)]"
+                  : "right-[calc(50%+2rem)] rotate-180"
+              }`}
+            ></div>
+
+            {/* Education Card */}
+            <div
+              className={`relative w-[45%] p-6 rounded-2xl border border-purple-600/40 
+                bg-gradient-to-br from-[#0b021b] via-[#1a0b33] to-[#0b021b]
+                hover:shadow-[0_0_40px_4px_rgba(130,69,236,0.5)]
+                transition-all duration-500 hover:-translate-y-1
+                ${
+                  index % 2 === 0
+                    ? "ml-auto text-left"
+                    : "mr-auto text-left sm:text-right"
+                }`}
             >
-              {/* Flex container for image and text */}
-              <div className="flex items-center space-x-6">
-                {/* School Logo/Image */}
-                <div className="w-24 h-16 bg-white rounded-md overflow-hidden">
+              {/* Date Badge */}
+              <div
+                className={`absolute -top-4 ${
+                  index % 2 === 0 ? "left-6" : "right-6"
+                } bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md`}
+              >
+                {edu.date}
+              </div>
+
+              {/* Degree and School */}
+              <div
+                className={`flex ${
+                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                } items-center gap-3`}
+              >
+                <div className="w-12 h-12 rounded-md overflow-hidden border border-purple-500">
                   <img
                     src={edu.img}
                     alt={edu.school}
                     className="w-full h-full object-cover"
                   />
                 </div>
-
-                {/* Degree, School Name, and Date */}
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl sm:text-xl font-semibold text-white">
-                      {edu.degree}
-                    </h3>
-                    <h4 className="text-md sm:text-sm text-gray-300">
-                      {edu.school}
-                    </h4>
-                  </div>
-                  {/* Date at the bottom */}
-                  <p className="text-sm text-gray-500 mt-2">{edu.date}</p>
+                <div>
+                  <h3 className="text-lg font-bold text-white">{edu.degree}</h3>
+                  <p className="text-gray-300 text-sm">{edu.school}</p>
+                  {edu.grade && (
+                    <p className="text-gray-400 text-sm mt-1 font-semibold">
+                      Grade: {edu.grade}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <p className="mt-4 text-gray-400 font-bold">Grade: {edu.grade}</p>
-              <p className="mt-4 text-gray-400">{edu.desc}</p>
+              {/* Location */}
+              {edu.location && (
+                <div
+                  className={`flex items-center gap-2 mt-3 text-sm text-purple-400 font-medium ${
+                    index % 2 === 0 ? "" : "justify-end"
+                  }`}
+                >
+                  <MapPin size={14} />
+                  <span>{edu.location}</span>
+                </div>
+              )}
+
+              {/* Description */}
+              <p
+                className={`mt-4 text-gray-400 text-sm leading-relaxed ${
+                  index % 2 === 0 ? "text-left" : "text-right"
+                }`}
+              >
+                {edu.desc}
+              </p>
             </div>
           </div>
         ))}
