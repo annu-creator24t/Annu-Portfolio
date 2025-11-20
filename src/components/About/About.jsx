@@ -10,6 +10,7 @@ const About = () => {
       className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] font-sans mt-16 md:mt-24 lg:mt-32"
     >
       <div className="flex flex-col-reverse md:flex-row justify-between items-center">
+        
         {/* LEFT SIDE */}
         <div className="md:w-1/2 text-center md:text-left mt-8 md:mt-0">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-tight">
@@ -58,9 +59,10 @@ const About = () => {
 
         {/* RIGHT SIDE */}
         <div className="md:w-1/2 flex justify-center md:justify-end md:pl-12 lg:pl-16">
-          {/* ✅ Clean Circular Image with Tilt, Reduced Height */}
+          
+          {/* UPDATED: Perfect Circle + Orientation Fix */}
           <Tilt
-            className="relative w-86 h-50 sm:w-80 sm:h-72 md:w-[25rem] md:h-[22rem] lg:w-[27rem] lg:h-[21rem] rounded-full overflow-hidden flex items-center justify-center"
+            className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden flex items-center justify-center"
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
             perspective={1000}
@@ -74,9 +76,11 @@ const About = () => {
               className="w-full h-full rounded-full object-cover shadow-[0_0_25px_rgba(130,69,236,0.4)]"
               style={{
                 objectPosition: "center top",
+                imageOrientation: "from-image", // ✅ FIX for tilted image on phones
               }}
             />
           </Tilt>
+
         </div>
       </div>
     </section>

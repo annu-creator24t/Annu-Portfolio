@@ -28,7 +28,7 @@ const Skills = () => (
             {category.title}
           </h3>
 
-          {/* Skill Items with Parallax Tilt */}
+          {/* Tilt Wrapper with Mobile Disabled */}
           <Tilt
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
@@ -36,6 +36,7 @@ const Skills = () => (
             scale={1.05}
             transitionSpeed={1000}
             gyroscope={true}
+            className="hidden sm:block" // 🔥 desktop & tablet only
           >
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
               {category.skills.map((skill) => (
@@ -55,6 +56,26 @@ const Skills = () => (
               ))}
             </div>
           </Tilt>
+
+          {/* Mobile Version (No Tilt, clean & stable) */}
+          <div className="grid grid-cols-2 gap-4 w-full sm:hidden">
+            {category.skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="flex flex-col items-center justify-center bg-gray-800/40 border border-gray-700 rounded-2xl h-24 transition-all duration-300"
+              >
+                <img
+                  src={skill.logo}
+                  alt={`${skill.name} logo`}
+                  className="w-10 h-10 object-contain mb-2"
+                />
+                <span className="text-xs text-gray-200 font-medium text-center">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
         </div>
       ))}
     </div>

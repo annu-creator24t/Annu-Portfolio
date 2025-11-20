@@ -16,18 +16,19 @@ const Experience = () => {
         </p>
       </div>
 
-      {/* Timeline */}
+      {/* Timeline Container */}
       <div className="relative max-w-6xl mx-auto">
-        {/* Central Vertical Line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-[3px] bg-gradient-to-b from-purple-600 to-purple-900 h-full rounded-full"></div>
+
+        {/* Vertical Line (hidden on mobile) */}
+        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-[3px] bg-gradient-to-b from-purple-600 to-purple-900 h-full rounded-full"></div>
 
         {experiences.map((exp, index) => (
           <div
             key={exp.id}
-            className="relative flex items-center justify-between mb-24 w-full"
+            className="relative flex flex-col md:flex-row md:items-center justify-between mb-24 w-full"
           >
-            {/* Timeline Node (Clickable Logo Circle) */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 z-20 flex justify-center items-center">
+            {/* Timeline Node (Centered on mobile) */}
+            <div className="z-20 flex justify-center mb-8 md:mb-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
               <a
                 href={exp.link}
                 target="_blank"
@@ -42,9 +43,9 @@ const Experience = () => {
               </a>
             </div>
 
-            {/* 🌈 Gradient Connector Line */}
+            {/* Connector Line (Desktop only) */}
             <div
-              className={`absolute top-1/2 w-[calc(50%-2rem)] h-[2px] bg-gradient-to-r from-purple-600 to-purple-400 ${
+              className={`hidden md:block absolute top-1/2 w-[calc(50%-2rem)] h-[2px] bg-gradient-to-r from-purple-600 to-purple-400 ${
                 index % 2 === 0
                   ? "left-[calc(50%+2rem)]"
                   : "right-[calc(50%+2rem)] rotate-180"
@@ -53,14 +54,20 @@ const Experience = () => {
 
             {/* Experience Card */}
             <div
-              className={`relative bg-gray-900 border border-gray-700 text-gray-300 rounded-2xl shadow-lg p-5 sm:p-6 transition-transform hover:scale-[1.03] hover:shadow-purple-500/40 ${
+              className={`relative bg-gray-900 border border-gray-700 text-gray-300 rounded-2xl shadow-lg p-6 transition-transform hover:scale-[1.03] hover:shadow-purple-500/40
+
+              ${
                 index % 2 === 0
-                  ? "ml-[calc(50%+2.5rem)]"
-                  : "mr-[calc(50%+2.5rem)]"
-              } sm:w-[45%] w-full mt-12 sm:mt-0`}
+                  ? "md:ml-[calc(50%+3rem)]"
+                  : "md:mr-[calc(50%+3rem)]"
+              }
+
+              w-full md:w-[45%]
+              text-center md:text-left
+              `}
             >
               {/* Header */}
-              <div className="flex items-center space-x-3 mb-3">
+              <div className="flex items-center justify-center md:justify-start space-x-3 mb-3">
                 <a
                   href={exp.link}
                   target="_blank"
@@ -97,7 +104,7 @@ const Experience = () => {
               {/* Skills */}
               <div>
                 <h5 className="font-medium text-white mb-2 text-sm">Skills:</h5>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-center md:justify-start gap-2">
                   {exp.skills.map((skill, i) => (
                     <span
                       key={i}
