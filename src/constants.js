@@ -171,45 +171,36 @@ export const projects = [
       "MongoDB",
       "Neuroscience",
     ],
-    /* github: "https://github.com/codingmastr/Chittavani",
-    webapp: "#", */
   },
+
   {
     id: 1,
     title: "AHAR",
     description:
-      "AHAR is a platform that connects restaurants, events, and NGOs to redistribute surplus food efficiently. Built with the MERN stack and SQL integration, it supports real-time tracking, route mapping, and transparent food donation management. It aims to reduce food waste and fight hunger through technology-driven collaboration.",
+      "AHAR is a platform that connects restaurants, events, and NGOs to redistribute surplus food efficiently. Built with the MERN stack and SQL integration, it supports real-time tracking, route mapping, and transparent food donation management.",
     image: fooddonation,
-    tags: [
-      "HTML",
-      "React",
-      "CSS",
-      "Express",
-      "Node.js",
-      "SQL",
-    ],
-    /* github: "https://github.com/codingmastr/Food-Donation-System",
-    webapp: "#", */
+    tags: ["HTML", "React", "CSS", "Express", "Node.js", "SQL"],
   },
+
   {
     id: 2,
     title: "Zerodha Clone",
     description:
-      "A clean, high-performance clone of Zerodha’s official website developed with React and Tailwind CSS. It focuses on replicating precise layouts, modern UI aesthetics, and smooth visual hierarchy to enhance front-end development and design expertise.",
+      "A clean, high-performance clone of Zerodha’s official website developed with React and Tailwind CSS.",
     image: zerodha,
-    tags: ["React Vite", "Tailwind CSS", "HTML", "CSS" ,"MongoDB", "Express"],
-    /* github: "https://github.com/codingmastr/Zerodha-Clone",
-    webapp: "#", */
+    tags: ["React", "Tailwind CSS", "HTML", "CSS", "MongoDB", "Express"],
+    github: "https://github.com/annu-creator24t/Zerodha-Clone",
+   
   },
-  {
-  id: 3,
-  title: "Annu's Portfolio",
-  description:
-    "Annu’s Portfolio is a modern, responsive personal website designed to showcase my projects, skills, and achievements. Built using React and Tailwind CSS, it features smooth animations, dynamic layouts, and an elegant UI. This portfolio reflects my passion for building innovative projects that combine Artificial Intelligence, Machine Learning, and modern React development to create meaningful digital experiences.",
-  image: portfolio, // import your portfolio screenshot
-  tags: ["HTML","React", "Tailwind CSS", "CSS",],
-  /* github: "https://github.com/yourusername/portfolio",
-  webapp: "https://yourportfolio.com", */
-}
 
+  {
+    id: 3,
+    title: "Annu's Portfolio",
+    description:
+      "Annu’s Portfolio is a modern, responsive personal website showcasing projects, skills, and achievements. Built using React and Tailwind CSS with smooth animations and elegant UI.",
+    image: portfolio,
+    tags: ["HTML", "React", "Tailwind CSS", "CSS"],
+    github: "https://github.com/annu-creator24t/Annu-Portfolio",
+    webapp: "https://annu-portfolio-pi.vercel.app/",
+  },
 ];

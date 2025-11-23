@@ -18,7 +18,7 @@ const Work = () => {
     document.body.style.overflow = selectedProject ? "hidden" : "auto";
   }, [selectedProject]);
 
-  // Allow closing modal with Escape key
+  // Close modal with ESC key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") handleCloseModal();
@@ -30,60 +30,96 @@ const Work = () => {
   return (
     <section
       id="work"
-      className="py-24 px-[12vw] md:px-[10vw] lg:px-[15vw] font-sans relative bg-[#0d0d0d] text-white"
+      className="py-24 px-[6vw] md:px-[10vw] lg:px-[15vw] font-sans bg-[#0d0d0d] text-white"
     >
       {/* Section Title */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-white">PROJECTS</h2>
+        <h2 className="text-4xl font-bold">PROJECTS</h2>
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
         <p className="text-gray-400 mt-4 text-lg font-semibold">
-          A showcase of the projects I have worked on, highlighting my skills
-          and experience in various technologies.
+          A showcase of the projects I have worked on.
         </p>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-2 justify-center">
+      {/* GRID — mobile, tablet, laptop friendly */}
+      <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 place-items-center">
         {projects.map((project) => (
           <div
             key={project.id}
             onClick={() => handleOpenModal(project)}
-            className="border border-gray-700 bg-gray-900 backdrop-blur-md rounded-xl shadow-xl overflow-hidden cursor-pointer hover:shadow-purple-500/40 hover:-translate-y-2 transition-all duration-300 w-[90%] md:w-[80%] mx-auto"
+            className="max-w-sm w-full mx-auto border border-gray-700 bg-gray-900 rounded-xl 
+                       shadow-xl overflow-hidden cursor-pointer 
+                       hover:shadow-purple-500/40 hover:-translate-y-2 
+                       transition-all duration-300"
           >
             <div className="p-3">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-36 object-cover rounded-lg"
+                className="w-full h-[180px] object-cover rounded-lg"
               />
             </div>
+
             <div className="p-4">
-              <h3 className="text-xl font-bold text-white mb-2 text-center">
-                {project.title}
-              </h3>
-              <p className="text-gray-400 mb-3 text-sm line-clamp-4 text-center">
+              <h3 className="text-xl font-bold text-center mb-2">{project.title}</h3>
+
+              <p className="text-gray-400 text-sm mb-3 line-clamp-3 text-center">
                 {project.description}
               </p>
-              <div className="flex flex-wrap justify-center">
+
+              {/* Tags */}
+              <div className="flex flex-wrap justify-center mb-4">
                 {project.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="inline-block bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1 m-1"
+                    className="bg-[#251f38] text-xs font-semibold text-purple-400 rounded-full px-2 py-1 m-1"
                   >
                     {tag}
                   </span>
                 ))}
+              </div>
+
+              {/* Buttons inside card */}
+              <div
+                className="flex justify-center gap-3"
+                onClick={(e) => e.stopPropagation()} // prevent opening modal
+              >
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="px-4 py-1.5 text-sm rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition"
+                  >
+                    GitHub
+                  </a>
+                )}
+
+                {project.webapp && (
+                  <a
+                    href={project.webapp}
+                    target="_blank"
+                    className="px-4 py-1.5 text-sm rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition"
+                  >
+                    Live
+                  </a>
+                )}
+
+                {!project.github && !project.webapp && (
+                  <button className="px-4 py-1.5 text-sm rounded-lg bg-gray-700 text-gray-300 cursor-default">
+                    Coming Soon
+                  </button>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal */}
+      {/* ===================== MODAL ===================== */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black bg-opacity-95 p-4"
+            className="fixed inset-0 z-[9999] overflow-y-auto flex flex-col items-center bg-black bg-opacity-95 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -91,39 +127,62 @@ const Work = () => {
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-6 right-8 text-white text-4xl font-bold hover:text-purple-500 z-50"
+              className="absolute top-6 right-8 text-white text-4xl font-bold hover:text-purple-500"
             >
               &times;
             </button>
 
-            {/* Full-size Image (fits screen height nicely) */}
+            {/* Modal Image */}
             <motion.img
               src={selectedProject.image}
               alt={selectedProject.title}
-              className="w-full max-w-6xl max-h-[85vh] object-contain rounded-xl shadow-2xl mb-6"
+              className="w-full max-w-4xl max-h-[60vh] md:max-h-[80vh] object-contain rounded-xl shadow-2xl mb-6"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
             />
 
-            {/* Project Details Below Image */}
-            <div className="text-center max-w-3xl px-6">
-              <h3 className="text-3xl font-bold text-white mb-4">
-                {selectedProject.title}
-              </h3>
-              <p className="text-gray-300 mb-4 text-base">
+            {/* Modal Content */}
+            <div className="text-center max-w-3xl px-4">
+              <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
+
+              <p className="text-gray-300 mb-4">
                 {selectedProject.description}
               </p>
+
+              {/* Tags */}
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {selectedProject.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
+                    className="bg-[#251f38] text-xs font-semibold text-purple-400 rounded-full px-2 py-1"
                   >
                     {tag}
                   </span>
                 ))}
+              </div>
+
+              {/* Purple Modal Buttons */}
+              <div className="flex justify-center gap-4 mt-6">
+                {selectedProject.github && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    className="px-6 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold hover:scale-105 transition"
+                  >
+                    GitHub
+                  </a>
+                )}
+
+                {selectedProject.webapp && (
+                  <a
+                    href={selectedProject.webapp}
+                    target="_blank"
+                    className="px-6 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 text-white font-semibold hover:scale-105 transition"
+                  >
+                    Live Website
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>
