@@ -188,7 +188,7 @@ export const projects = [
     description:
       "A clean, high-performance clone of Zerodha’s official website developed with React and Tailwind CSS.",
     image: zerodha,
-    tags: ["React", "Tailwind CSS", "HTML", "CSS", "MongoDB", "Express"],
+    tags: ["React", "Tailwind CSS","CSS", "MongoDB", "Express"],
     github: "https://github.com/annu-creator24t/Zerodha-Clone",
    
   },

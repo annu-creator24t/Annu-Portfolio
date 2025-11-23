@@ -13,12 +13,12 @@ const Work = () => {
     setSelectedProject(null);
   };
 
-  // Disable background scroll when modal is open
+  // Disable scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "auto";
   }, [selectedProject]);
 
-  // Close modal with ESC key
+  // Close modal with ESC
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") handleCloseModal();
@@ -41,14 +41,15 @@ const Work = () => {
         </p>
       </div>
 
-      {/* GRID — mobile, tablet, laptop responsive */}
+      {/* ====== GRID ====== */}
       <div className="grid gap-12 sm:gap-14 lg:gap-16 grid-cols-1 sm:grid-cols-2 place-items-center">
         {projects.map((project) => (
           <div
             key={project.id}
             onClick={() => handleOpenModal(project)}
             className="
-              w-[90%] sm:w-[80%] md:w-[70%] lg:max-w-[330px]
+              w-[92%] sm:w-[85%] md:w-[78%] lg:max-w-[360px]
+              min-h-[560px]
               mx-auto border border-gray-700 bg-gray-900 rounded-xl 
               shadow-xl overflow-hidden cursor-pointer 
               hover:shadow-purple-500/40 hover:-translate-y-2 
@@ -63,10 +64,8 @@ const Work = () => {
               />
             </div>
 
-            <div className="p-4">
-              <h3 className="text-xl font-bold text-center mb-2">
-                {project.title}
-              </h3>
+            <div className="p-4 flex flex-col h-full">
+              <h3 className="text-xl font-bold text-center mb-2">{project.title}</h3>
 
               <p className="text-gray-400 text-sm mb-3 line-clamp-3 text-center">
                 {project.description}
@@ -84,10 +83,10 @@ const Work = () => {
                 ))}
               </div>
 
-              {/* Buttons inside card */}
+              {/* Buttons */}
               <div
-                className="flex justify-center gap-3"
-                onClick={(e) => e.stopPropagation()} // prevent opening modal
+                className="flex justify-center gap-3 mt-auto"
+                onClick={(e) => e.stopPropagation()}
               >
                 {project.github && (
                   <a
@@ -120,7 +119,7 @@ const Work = () => {
         ))}
       </div>
 
-      {/* ===================== MODAL ===================== */}
+      {/* ====== MODAL ====== */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -149,13 +148,9 @@ const Work = () => {
 
             {/* Modal Content */}
             <div className="text-center max-w-3xl px-4">
-              <h3 className="text-3xl font-bold mb-4">
-                {selectedProject.title}
-              </h3>
+              <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
 
-              <p className="text-gray-300 mb-4">
-                {selectedProject.description}
-              </p>
+              <p className="text-gray-300 mb-4">{selectedProject.description}</p>
 
               {/* Tags */}
               <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -169,7 +164,7 @@ const Work = () => {
                 ))}
               </div>
 
-              {/* Purple Modal Buttons */}
+              {/* Modal Buttons */}
               <div className="flex justify-center gap-4 mt-6">
                 {selectedProject.github && (
                   <a
