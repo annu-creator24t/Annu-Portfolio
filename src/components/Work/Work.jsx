@@ -41,16 +41,19 @@ const Work = () => {
         </p>
       </div>
 
-      {/* GRID — mobile, tablet, laptop friendly */}
-      <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 place-items-center">
+      {/* GRID — mobile, tablet, laptop responsive */}
+      <div className="grid gap-12 sm:gap-14 lg:gap-16 grid-cols-1 sm:grid-cols-2 place-items-center">
         {projects.map((project) => (
           <div
             key={project.id}
             onClick={() => handleOpenModal(project)}
-            className="max-w-sm w-full mx-auto border border-gray-700 bg-gray-900 rounded-xl 
-                       shadow-xl overflow-hidden cursor-pointer 
-                       hover:shadow-purple-500/40 hover:-translate-y-2 
-                       transition-all duration-300"
+            className="
+              w-[90%] sm:w-[80%] md:w-[70%] lg:max-w-[330px]
+              mx-auto border border-gray-700 bg-gray-900 rounded-xl 
+              shadow-xl overflow-hidden cursor-pointer 
+              hover:shadow-purple-500/40 hover:-translate-y-2 
+              transition-all duration-300
+            "
           >
             <div className="p-3">
               <img
@@ -61,7 +64,9 @@ const Work = () => {
             </div>
 
             <div className="p-4">
-              <h3 className="text-xl font-bold text-center mb-2">{project.title}</h3>
+              <h3 className="text-xl font-bold text-center mb-2">
+                {project.title}
+              </h3>
 
               <p className="text-gray-400 text-sm mb-3 line-clamp-3 text-center">
                 {project.description}
@@ -144,7 +149,9 @@ const Work = () => {
 
             {/* Modal Content */}
             <div className="text-center max-w-3xl px-4">
-              <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
+              <h3 className="text-3xl font-bold mb-4">
+                {selectedProject.title}
+              </h3>
 
               <p className="text-gray-300 mb-4">
                 {selectedProject.description}
