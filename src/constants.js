@@ -163,7 +163,6 @@ export const projects = [
     image: chittavani,
     tags: [
       "React Vite",
-      "HTML",
       "Tailwind CSS",
       "Machine Learning",
       "Node.js",
@@ -186,11 +185,15 @@ export const projects = [
     id: 2,
     title: "Zerodha Clone",
     description:
-      "A clean, high-performance clone of Zerodha’s official website developed with React and Tailwind CSS.",
+      "A clean, high-performance clone of Zerodha’s official website developed with React and Tailwind CSS. Includes a fully functional dashboard integrated with backend APIs and MongoDB.",
     image: zerodha,
-    tags: ["React", "Tailwind CSS","CSS", "MongoDB", "Express"],
+    tags: ["React", "Tailwind CSS", "CSS", "MongoDB", "Express"],
     github: "https://github.com/annu-creator24t/Zerodha-Clone",
-   
+
+    // ⭐ Added Links
+    webapp: "https://zerodha-clone-i3qw.vercel.app/",           // Main Frontend Website
+    dashboard: "https://zerodha-clone-six-amber.vercel.app/",   // Working Dashboard
+    backend: "https://zerodha-clone-3-03lv.onrender.com/",       // Backend API
   },
 
   {
